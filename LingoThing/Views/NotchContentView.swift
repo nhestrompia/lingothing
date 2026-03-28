@@ -238,6 +238,27 @@ struct NotchContentView: View {
             return
         }
 
+        let micDenied = {
+            let status = Permissions.microphoneStatus
+            return status == .denied || status == .restricted
+        }()
+        let speechDenied = {
+            let status = Permissions.speechStatus
+            return status == .denied || status == .restricted
+        }()
+
+        if micDenied || speechDenied {
+            resetAudioLevels()
+            appState.currentPhase = .expanded
+            if micDenied {
+                Permissions.openMicrophonePrivacySettings()
+            }
+            if speechDenied {
+                Permissions.openSpeechPrivacySettings()
+            }
+            return
+        }
+
         launchListening()
     }
 

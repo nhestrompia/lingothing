@@ -155,21 +155,43 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private func requestOnboardingPermissionsIfNeeded(completion: @escaping () -> Void) {
         let defaults = UserDefaults.standard
         let didRequestBefore = defaults.bool(forKey: OnboardingKeys.didRequestPermissions)
-        if didRequestBefore && !Permissions.hasUndeterminedPermissions {
-            completion()
-            return
-        }
-        guard Permissions.hasUndeterminedPermissions else {
-            defaults.set(true, forKey: OnboardingKeys.didRequestPermissions)
+        let allGranted = Permissions.microphoneAuthorized && Permissions.speechAuthorized
+
+        if didRequestBefore && allGranted {
             completion()
             return
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             NSApp.activate(ignoringOtherApps: true)
-            Permissions.requestForOnboarding { _ in
+            Permissions.requestForOnboarding { [weak self] granted in
                 defaults.set(true, forKey: OnboardingKeys.didRequestPermissions)
+                if !granted {
+                    self?.presentPermissionFixAlertIfNeeded()
+                }
                 completion()
+            }
+        }
+    }
+
+    private func presentPermissionFixAlertIfNeeded() {
+        let micMissing = !Permissions.microphoneAuthorized
+        let speechMissing = !Permissions.speechAuthorized
+        guard micMissing || speechMissing else { return }
+
+        let alert = NSAlert()
+        alert.messageText = "Permissions Needed for Listening"
+        alert.informativeText = "Enable Microphone and Speech Recognition in System Settings to use pronunciation listening."
+        alert.addButton(withTitle: "Open Settings")
+        alert.addButton(withTitle: "Later")
+        alert.alertStyle = .informational
+
+        if alert.runModal() == .alertFirstButtonReturn {
+            if micMissing {
+                Permissions.openMicrophonePrivacySettings()
+            }
+            if speechMissing {
+                Permissions.openSpeechPrivacySettings()
             }
         }
     }
