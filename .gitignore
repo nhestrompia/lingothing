@@ -2,5 +2,6 @@
 implementation.md
 language-dataset-sources.json
 build_spanish_french_dataset.py
-dist/
+dist/DerivedData/
+dist/LingoThing.app/
 NotchGreek.xcodeproj/
