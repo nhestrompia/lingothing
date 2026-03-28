@@ -21,6 +21,16 @@ struct ScreenGeometry {
         return NSScreen.main ?? NSScreen.screens.first
     }
 
+    static func targetScreen() -> NSScreen? {
+        defaultTargetScreen()
+    }
+
+    static func menuBarHeight(for screen: NSScreen? = nil) -> CGFloat {
+        let target = screen ?? defaultTargetScreen()
+        guard let target else { return 24 }
+        return max(22, target.frame.maxY - target.visibleFrame.maxY)
+    }
+
     static func notchInfo(for screen: NSScreen? = nil) -> NotchInfo? {
         let target = screen ?? defaultTargetScreen()
         guard let target else { return nil }
@@ -79,10 +89,10 @@ struct ScreenGeometry {
         let height = Constants.Layout.pulseHeight
 
         if let notch = notchInfo(for: target) {
-            width = max(Constants.Layout.pulseWidth, min(460, notch.width + 300))
+            width = max(Constants.Layout.pulseWidth, min(560, notch.width + 360))
             return NSRect(
                 x: notch.centerX - width / 2,
-                y: notch.bottomY - height + Constants.Layout.pulseTopOverlap,
+                y: (target?.frame.maxY ?? notch.bottomY) - height + Constants.Layout.pulseTopOverlap,
                 width: width,
                 height: height
             )
@@ -92,7 +102,7 @@ struct ScreenGeometry {
         let screenFrame = target?.frame ?? NSScreen.main?.frame ?? .zero
         return NSRect(
             x: screenFrame.midX - width / 2,
-            y: screenFrame.maxY - 40,
+            y: screenFrame.maxY - height + Constants.Layout.pulseTopOverlap,
             width: width,
             height: height
         )
@@ -101,19 +111,19 @@ struct ScreenGeometry {
     /// Compact notch-aligned capsule used as the visual "origin" for pulse morph animations.
     static func pulseCompactFrame(for screen: NSScreen? = nil) -> NSRect {
         let target = screen ?? defaultTargetScreen()
-        let expanded = pulseFrame(for: target)
         let compactHeight: CGFloat = 32
 
         if let notch = notchInfo(for: target) {
             let compactWidth = notchCutoutWidth(for: target)
             return NSRect(
                 x: notch.centerX - compactWidth / 2,
-                y: notch.bottomY - compactHeight + Constants.Layout.pulseTopOverlap,
+                y: (target?.frame.maxY ?? notch.bottomY) - compactHeight + Constants.Layout.pulseTopOverlap,
                 width: compactWidth,
                 height: compactHeight
             )
         }
 
+        let expanded = pulseFrame(for: target)
         return NSRect(
             x: expanded.midX - 90,
             y: expanded.midY - compactHeight / 2,
@@ -125,18 +135,14 @@ struct ScreenGeometry {
     static func expandedCardFrame(for screen: NSScreen? = nil, height: CGFloat = Constants.Layout.cardHeight) -> NSRect {
         let target = screen ?? defaultTargetScreen()
         var width = Constants.Layout.cardWidth
+        let menuBar = menuBarHeight(for: target)
+        let effectiveHeight = height + menuBar
 
         if let notch = notchInfo(for: target) {
-            let topMorph = Constants.Layout.cardTopMorphExtension
-            let effectiveHeight = height + topMorph
-            width = max(Constants.Layout.cardWidth, min(420, notch.width + 160))
+            width = max(Constants.Layout.cardWidth, min(460, notch.width + 190))
             return NSRect(
                 x: notch.centerX - width / 2,
-                y: notch.bottomY
-                    - Constants.Layout.notchCutoutBottomInset
-                    - effectiveHeight
-                    + Constants.Layout.cardVerticalLift
-                    + topMorph,
+                y: (target?.frame.maxY ?? notch.bottomY) - effectiveHeight,
                 width: width,
                 height: effectiveHeight
             )
@@ -145,9 +151,9 @@ struct ScreenGeometry {
         let screenFrame = target?.frame ?? NSScreen.main?.frame ?? .zero
         return NSRect(
             x: screenFrame.midX - width / 2,
-            y: screenFrame.maxY - height - 40,
+            y: screenFrame.maxY - effectiveHeight,
             width: width,
-            height: height
+            height: effectiveHeight
         )
     }
 }

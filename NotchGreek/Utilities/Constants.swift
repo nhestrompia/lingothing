@@ -12,9 +12,9 @@ enum Constants {
     }
 
     enum Layout {
-        static let pulseWidth: CGFloat = 360
-        static let pulseHeight: CGFloat = 56
-        static let cardWidth: CGFloat = 340
+        static let pulseWidth: CGFloat = 430
+        static let pulseHeight: CGFloat = 72
+        static let cardWidth: CGFloat = 364
         static let expandedCardHeight: CGFloat = 216
         static let listeningCardHeight: CGFloat = 224
         static let completionCardHeight: CGFloat = 286
@@ -22,7 +22,7 @@ enum Constants {
         static let cardCornerRadius: CGFloat = 28
         static let cardVerticalLift: CGFloat = -50
         static let cardTopMorphExtension: CGFloat = 72
-        static let pulseTopOverlap: CGFloat = -1
+        static let pulseTopOverlap: CGFloat = 12
 
         static let notchCutoutHeight: CGFloat = 30
         static let notchCutoutOffsetY: CGFloat = -24
@@ -30,7 +30,7 @@ enum Constants {
     }
 
     enum Colors {
-        static let cardBackground = Color.black.opacity(0.985)
+        static let cardBackground = Color.black.opacity(0.995)
         static let pulseColor = Color.white.opacity(0.6)
         static let accentBlue = Color(red: 0.35, green: 0.6, blue: 1.0)
         static let textPrimary = Color.white

@@ -9,7 +9,7 @@ final class NotchWindow: NSPanel {
             defer: true
         )
 
-        level = .statusBar
+        level = .screenSaver
         isOpaque = false
         backgroundColor = .clear
         hasShadow = false

@@ -1,5 +1,42 @@
 import SwiftUI
 
+private struct DynamicIslandShape: Shape {
+    var topInset: CGFloat = 14
+    var bottomRadius: CGFloat = 18
+
+    func path(in rect: CGRect) -> Path {
+        let width = rect.width
+        let height = rect.height
+        let inset = topInset
+        let radius = bottomRadius
+        var path = Path()
+
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addQuadCurve(
+            to: CGPoint(x: inset, y: inset),
+            control: CGPoint(x: inset, y: 0)
+        )
+        path.addLine(to: CGPoint(x: inset, y: height - radius))
+        path.addQuadCurve(
+            to: CGPoint(x: inset + radius, y: height),
+            control: CGPoint(x: inset, y: height)
+        )
+        path.addLine(to: CGPoint(x: width - inset - radius, y: height))
+        path.addQuadCurve(
+            to: CGPoint(x: width - inset, y: height - radius),
+            control: CGPoint(x: width - inset, y: height)
+        )
+        path.addLine(to: CGPoint(x: width - inset, y: inset))
+        path.addQuadCurve(
+            to: CGPoint(x: width, y: 0),
+            control: CGPoint(x: width - inset, y: 0)
+        )
+        path.closeSubpath()
+
+        return path
+    }
+}
+
 struct NotchContentView: View {
     @Bindable var appState: AppState
     let audioManager: AudioManager
@@ -13,7 +50,7 @@ struct NotchContentView: View {
     var body: some View {
         ZStack {
             // Background
-            if appState.currentPhase != .pulse {
+            if appState.currentPhase != .idle {
                 islandBackground
             }
 
@@ -402,42 +439,39 @@ struct NotchContentView: View {
     }
 
     private var islandBackground: some View {
-        let shape = NotchedPanelShape(
-            cornerRadius: 30,
-            notchWidth: notchCutoutWidth,
-            notchHeight: Constants.Layout.notchCutoutHeight,
-            notchYOffset: Constants.Layout.notchCutoutOffsetY,
-            notchCornerRadius: 12
-        )
+        let baseShape = DynamicIslandShape(topInset: 14, bottomRadius: 18)
+        let pulseBridgeWidth = notchCutoutWidth + 42
+        let pulseBridgeHeight: CGFloat = 20
+        let pulseBridgeOffsetY: CGFloat = -10
+        let pulseTopCapHeight: CGFloat = 18
 
-        return shape
-            .fill(
-                LinearGradient(
-                    colors: [
-                        Color.black.opacity(0.995),
-                        Color.black.opacity(0.98)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                ),
-                style: FillStyle(eoFill: true)
-            )
-            .overlay(
-                shape.stroke(Color.white.opacity(0.06), lineWidth: 0.8)
-            )
-            .overlay(alignment: .top) {
-                // Fill part of the notch cutout with a darker top bridge so the card
-                // appears to merge into the hardware notch area.
-                RoundedRectangle(cornerRadius: 11, style: .continuous)
-                    .fill(Color.black.opacity(0.995))
-                    .frame(width: notchCutoutWidth + 24, height: Constants.Layout.notchCutoutHeight + 14)
-                    .offset(y: Constants.Layout.notchCutoutOffsetY - 2)
+        return ZStack(alignment: .top) {
+            baseShape
+                .fill(Color.black)
+                .overlay(
+                    baseShape.stroke(Color.white.opacity(0.06), lineWidth: 0.8)
+                )
+
+            if appState.currentPhase == .pulse {
+                // Pulse-only top extension so the card reaches the screen edge.
+                Rectangle()
+                    .fill(Color.black)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: pulseTopCapHeight)
+                    .offset(y: -pulseTopCapHeight)
+
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color.black)
+                    .frame(width: pulseBridgeWidth, height: pulseBridgeHeight)
+                    .offset(y: pulseBridgeOffsetY)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 11, style: .continuous)
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .stroke(Color.white.opacity(0.05), lineWidth: 0.6)
+                            .frame(width: pulseBridgeWidth, height: pulseBridgeHeight)
+                            .offset(y: pulseBridgeOffsetY)
                     )
             }
-        .shadow(color: .black.opacity(0.5), radius: 22, y: 10)
+        }
     }
 
     private var notchCutoutWidth: CGFloat {
@@ -451,39 +485,8 @@ struct NotchContentView: View {
         case .expanded, .listening:
             return 16
         case .completion:
-            return 24
+            return 16
         }
-    }
-}
-
-private struct NotchedPanelShape: Shape {
-    let cornerRadius: CGFloat
-    let notchWidth: CGFloat
-    let notchHeight: CGFloat
-    let notchYOffset: CGFloat
-    let notchCornerRadius: CGFloat
-
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.addRoundedRect(
-            in: rect,
-            cornerSize: CGSize(width: cornerRadius, height: cornerRadius),
-            style: .continuous
-        )
-
-        let cutout = CGRect(
-            x: rect.midX - notchWidth / 2,
-            y: notchYOffset,
-            width: notchWidth,
-            height: notchHeight
-        )
-        path.addRoundedRect(
-            in: cutout,
-            cornerSize: CGSize(width: notchCornerRadius, height: notchCornerRadius),
-            style: .continuous
-        )
-
-        return path
     }
 }
 

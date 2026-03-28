@@ -13,6 +13,7 @@ final class NotchWindowController {
     private var completionDismissWorkItem: DispatchWorkItem?
     private var observation: Any?
     private var renderedPhase: AppPhase = .idle
+    private var activeScreen: NSScreen?
 
     init(appState: AppState, phraseManager: PhraseManager, audioManager: AudioManager, speechManager: SpeechManager) {
         self.appState = appState
@@ -51,12 +52,12 @@ final class NotchWindowController {
         case .pulse:
             showPulse()
         case .expanded:
-            expandToCard(height: Constants.Layout.expandedCardHeight)
+            expandToCard(height: Constants.Layout.cardHeight)
         case .listening:
-            resizeCard(height: Constants.Layout.listeningCardHeight)
+            resizeCard(height: Constants.Layout.cardHeight)
             updateContent()
         case .completion:
-            resizeCard(height: Constants.Layout.completionCardHeight)
+            resizeCard(height: Constants.Layout.cardHeight)
             updateContent()
         }
     }
@@ -68,10 +69,12 @@ final class NotchWindowController {
             appState.currentPhrase = phraseManager.nextPhrase()
         }
 
-        let targetFrame = ScreenGeometry.pulseFrame()
-        let compactFrame = ScreenGeometry.pulseCompactFrame()
+        let geometryScreen = activeScreen ?? window?.screen ?? ScreenGeometry.targetScreen()
+        let targetFrame = ScreenGeometry.pulseFrame(for: geometryScreen)
+        let compactFrame = ScreenGeometry.pulseCompactFrame(for: geometryScreen)
         let isNewWindow = window == nil
         let window = ensureWindow(frame: isNewWindow ? compactFrame : targetFrame)
+        activeScreen = window.screen ?? geometryScreen
 
         if isNewWindow {
             window.alphaValue = 0
@@ -113,7 +116,8 @@ final class NotchWindowController {
         pulseTimer?.invalidate()
         pulseTimer = nil
 
-        let targetFrame = ScreenGeometry.expandedCardFrame(height: height)
+        let geometryScreen = window.screen ?? activeScreen
+        let targetFrame = ScreenGeometry.expandedCardFrame(for: geometryScreen, height: height)
 
         NSAnimationContext.runAnimationGroup { ctx in
             ctx.duration = 0.38
@@ -124,7 +128,8 @@ final class NotchWindowController {
 
     private func resizeCard(height: CGFloat) {
         guard let window else { return }
-        let targetFrame = ScreenGeometry.expandedCardFrame(height: height)
+        let geometryScreen = window.screen ?? activeScreen
+        let targetFrame = ScreenGeometry.expandedCardFrame(for: geometryScreen, height: height)
         let frameChanged = abs(window.frame.height - targetFrame.height) > 0.5
             || abs(window.frame.origin.y - targetFrame.origin.y) > 0.5
         guard frameChanged else { return }
@@ -173,7 +178,7 @@ final class NotchWindowController {
         guard let window else { return }
 
         if case .pulse = previousPhase {
-            let compactFrame = ScreenGeometry.pulseCompactFrame()
+            let compactFrame = ScreenGeometry.pulseCompactFrame(for: window.screen ?? activeScreen)
             NSAnimationContext.runAnimationGroup { ctx in
                 ctx.duration = Constants.Animation.pulseMorphOutDuration
                 ctx.timingFunction = CAMediaTimingFunction(controlPoints: 0.4, 0.0, 0.78, 0.0)
@@ -184,6 +189,7 @@ final class NotchWindowController {
                 window.alphaValue = 1
                 self?.window = nil
                 self?.hostingView = nil
+                self?.activeScreen = nil
             }
             return
         }
@@ -197,6 +203,7 @@ final class NotchWindowController {
             window.alphaValue = 1
             self?.window = nil
             self?.hostingView = nil
+            self?.activeScreen = nil
         }
     }
 

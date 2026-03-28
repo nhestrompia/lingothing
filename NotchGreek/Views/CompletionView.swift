@@ -20,6 +20,7 @@ struct CompletionView: View {
                     startedAt: timerStart,
                     duration: Constants.Animation.completionAutoDismissSeconds
                 )
+                .padding(.trailing, 10)
             }
 
             // Result indicator

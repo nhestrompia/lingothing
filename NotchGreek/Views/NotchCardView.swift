@@ -132,9 +132,9 @@ struct NotchCardView: View {
             }
             .padding(.bottom, 8)
         }
-        .padding(.horizontal, 15)
-        .padding(.top, 6)
-        .padding(.bottom, 6)
+        .padding(.horizontal, 20)
+        .padding(.top, 10)
+        .padding(.bottom, 10)
     }
 
     private var highlightedPhraseText: Text {
