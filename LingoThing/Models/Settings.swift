@@ -1,7 +1,7 @@
 import Foundation
 
 struct AppSettings: Codable, Equatable {
-    static let allowedIntervalMinutes: [Int] = [10, 15, 30, 60, 120]
+    static let allowedIntervalMinutes: [Int] = [1, 10, 15, 30, 60, 120]
 
     enum PracticeLanguage: String, Codable, CaseIterable, Identifiable {
         case greek

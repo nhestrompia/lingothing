@@ -256,8 +256,10 @@ final class SpeechManager: NSObject, SFSpeechRecognizerDelegate {
     private func handleSilenceTimeout() {
         let transcript = latestTranscript.trimmingCharacters(in: .whitespacesAndNewlines)
         if transcript.isEmpty {
-            stopListening()
-            onError?(SpeechError.noInput)
+            // Keep listening on silence instead of forcing an error/completion jump.
+            if isListeningSessionActive {
+                resetSilenceTimer()
+            }
             return
         }
 

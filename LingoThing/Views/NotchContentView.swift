@@ -196,15 +196,9 @@ struct NotchContentView: View {
                 DispatchQueue.main.async {
                     guard case .listening = appState.currentPhase else { return }
                     resetAudioLevels()
-                    appState.lastMatchScore = 0
-                    WeakPhraseStore.shared.recordAttempt(
-                        phrase: phrase,
-                        language: appState.settings.practiceLanguage,
-                        score: 0,
-                        result: .skipped,
-                        transcript: appState.transcript
-                    )
-                    appState.currentPhase = .completion(.skipped)
+                    appState.transcript = ""
+                    // Recover to expanded instead of jumping directly to result.
+                    appState.currentPhase = .expanded
                 }
             }
 
@@ -219,14 +213,8 @@ struct NotchContentView: View {
                 try speechManager.startListening()
             } catch {
                 resetAudioLevels()
-                WeakPhraseStore.shared.recordAttempt(
-                    phrase: phrase,
-                    language: appState.settings.practiceLanguage,
-                    score: 0,
-                    result: .skipped,
-                    transcript: appState.transcript
-                )
-                appState.currentPhase = .completion(.skipped)
+                appState.transcript = ""
+                appState.currentPhase = .expanded
             }
         }
 
@@ -252,7 +240,7 @@ struct NotchContentView: View {
 
         guard Permissions.microphoneAuthorized && Permissions.speechAuthorized else {
             resetAudioLevels()
-            appState.currentPhase = .completion(.skipped)
+            appState.currentPhase = .expanded
             return
         }
 
