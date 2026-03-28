@@ -1,5 +1,6 @@
 import AVFoundation
 import Speech
+import AppKit
 
 struct Permissions {
     static var microphoneStatus: AVAuthorizationStatus {
@@ -41,13 +42,9 @@ struct Permissions {
     }
 
     static func requestAll(completion: @escaping (Bool) -> Void) {
-        requestMicrophone { micGranted in
-            guard micGranted else {
-                completion(false)
-                return
-            }
-            requestSpeechRecognition { speechGranted in
-                completion(speechGranted)
+        requestMicrophone { _ in
+            requestSpeechRecognition { _ in
+                completion(microphoneAuthorized && speechAuthorized)
             }
         }
     }
@@ -66,5 +63,15 @@ struct Permissions {
 
     static var speechAuthorized: Bool {
         SFSpeechRecognizer.authorizationStatus() == .authorized
+    }
+
+    static func openMicrophonePrivacySettings() {
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Microphone") else { return }
+        NSWorkspace.shared.open(url)
+    }
+
+    static func openSpeechPrivacySettings() {
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_SpeechRecognition") else { return }
+        NSWorkspace.shared.open(url)
     }
 }

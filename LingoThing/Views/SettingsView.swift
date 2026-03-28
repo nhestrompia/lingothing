@@ -3,6 +3,8 @@ import ServiceManagement
 import Foundation
 import AppKit
 import UniformTypeIdentifiers
+import AVFoundation
+import Speech
 
 struct SettingsView: View {
     @Bindable var appState: AppState
@@ -13,6 +15,8 @@ struct SettingsView: View {
     @State private var categoryLanguage: AppSettings.PracticeLanguage
     @State private var levelLanguage: AppSettings.PracticeLanguage
     @State private var showVoicePreviewOptions = false
+    @State private var microphoneStatus: AVAuthorizationStatus = Permissions.microphoneStatus
+    @State private var speechStatus: SFSpeechRecognizerAuthorizationStatus = Permissions.speechStatus
 
     init(appState: AppState, phraseManager: PhraseManager, audioManager: AudioManager) {
         self._appState = Bindable(appState)
@@ -50,6 +54,12 @@ struct SettingsView: View {
         .onChange(of: appState.settings) { _, newSettings in
             newSettings.save()
             NotificationCenter.default.post(name: .settingsChanged, object: nil)
+        }
+        .onAppear {
+            refreshPermissionStatuses()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+            refreshPermissionStatuses()
         }
     }
 
@@ -299,13 +309,18 @@ struct SettingsView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
-            if !Permissions.speechAuthorized {
+            if !microphoneAuthorized || !speechAuthorized {
                 HStack {
                     Image(systemName: "exclamationmark.triangle")
                         .foregroundStyle(.orange)
-                    Text("Speech recognition requires permission")
+                    Text("Microphone and speech recognition permissions are required for listening")
                         .font(.caption)
                 }
+
+                Button("Open Permissions") {
+                    selectedSection = .system
+                }
+                .buttonStyle(.link)
             }
         }
     }
@@ -319,9 +334,31 @@ struct SettingsView: View {
                     }
             }
 
-            Section {
-                Button("Request Permissions") {
-                    Permissions.requestAll { _ in }
+            Section("Permissions") {
+                permissionRow(
+                    title: "Microphone",
+                    status: microphoneStatusText,
+                    isGranted: microphoneAuthorized,
+                    actionTitle: microphonePermissionActionTitle,
+                    action: handleMicrophonePermissionAction
+                )
+
+                permissionRow(
+                    title: "Speech Recognition",
+                    status: speechStatusText,
+                    isGranted: speechAuthorized,
+                    actionTitle: speechPermissionActionTitle,
+                    action: handleSpeechPermissionAction
+                )
+
+                if !allListeningPermissionsGranted {
+                    Button("Request Missing Permissions") {
+                        requestMissingPermissions()
+                    }
+                } else {
+                    Label("All listening permissions granted", systemImage: "checkmark.circle.fill")
+                        .font(.caption)
+                        .foregroundStyle(Constants.Colors.successGreen)
                 }
             }
         }
@@ -360,6 +397,121 @@ struct SettingsView: View {
 
     private func hourLabel(_ hour: Int) -> String {
         String(format: "%02d:00", hour)
+    }
+
+    private var microphoneAuthorized: Bool {
+        microphoneStatus == .authorized
+    }
+
+    private var speechAuthorized: Bool {
+        speechStatus == .authorized
+    }
+
+    private var allListeningPermissionsGranted: Bool {
+        microphoneAuthorized && speechAuthorized
+    }
+
+    private var microphoneStatusText: String {
+        switch microphoneStatus {
+        case .authorized: return "Allowed"
+        case .notDetermined: return "Not requested"
+        case .denied: return "Denied"
+        case .restricted: return "Restricted"
+        @unknown default: return "Unavailable"
+        }
+    }
+
+    private var speechStatusText: String {
+        switch speechStatus {
+        case .authorized: return "Allowed"
+        case .notDetermined: return "Not requested"
+        case .denied: return "Denied"
+        case .restricted: return "Restricted"
+        @unknown default: return "Unavailable"
+        }
+    }
+
+    private var microphonePermissionActionTitle: String {
+        microphoneStatus == .notDetermined ? "Request" : "Open Settings"
+    }
+
+    private var speechPermissionActionTitle: String {
+        speechStatus == .notDetermined ? "Request" : "Open Settings"
+    }
+
+    private func refreshPermissionStatuses() {
+        microphoneStatus = Permissions.microphoneStatus
+        speechStatus = Permissions.speechStatus
+    }
+
+    private func handleMicrophonePermissionAction() {
+        switch microphoneStatus {
+        case .authorized:
+            return
+        case .notDetermined:
+            Permissions.requestMicrophone { _ in
+                refreshPermissionStatuses()
+            }
+        case .denied, .restricted:
+            Permissions.openMicrophonePrivacySettings()
+        @unknown default:
+            Permissions.openMicrophonePrivacySettings()
+        }
+    }
+
+    private func handleSpeechPermissionAction() {
+        switch speechStatus {
+        case .authorized:
+            return
+        case .notDetermined:
+            Permissions.requestSpeechRecognition { _ in
+                refreshPermissionStatuses()
+            }
+        case .denied, .restricted:
+            Permissions.openSpeechPrivacySettings()
+        @unknown default:
+            Permissions.openSpeechPrivacySettings()
+        }
+    }
+
+    private func requestMissingPermissions() {
+        if microphoneStatus == .notDetermined || speechStatus == .notDetermined {
+            Permissions.requestAll { _ in
+                refreshPermissionStatuses()
+            }
+        }
+
+        if microphoneStatus == .denied || microphoneStatus == .restricted {
+            Permissions.openMicrophonePrivacySettings()
+        }
+        if speechStatus == .denied || speechStatus == .restricted {
+            Permissions.openSpeechPrivacySettings()
+        }
+    }
+
+    @ViewBuilder
+    private func permissionRow(
+        title: String,
+        status: String,
+        isGranted: Bool,
+        actionTitle: String,
+        action: @escaping () -> Void
+    ) -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                Text(status)
+                    .font(.caption)
+                    .foregroundStyle(isGranted ? Constants.Colors.successGreen : .secondary)
+            }
+            Spacer()
+            if isGranted {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(Constants.Colors.successGreen)
+            } else {
+                Button(actionTitle, action: action)
+            }
+        }
     }
 
     @ViewBuilder
