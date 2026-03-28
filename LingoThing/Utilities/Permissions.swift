@@ -3,37 +3,8 @@ import Speech
 import AppKit
 
 struct Permissions {
-    private static func recordPermissionStatus() -> AVAuthorizationStatus? {
-        guard #available(macOS 14.0, *) else { return nil }
-        switch AVAudioApplication.shared.recordPermission {
-        case .granted:
-            return .authorized
-        case .denied:
-            return .denied
-        case .undetermined:
-            return .notDetermined
-        @unknown default:
-            return .restricted
-        }
-    }
-
     static var microphoneStatus: AVAuthorizationStatus {
-        let captureStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-        guard let recordStatus = recordPermissionStatus() else {
-            return captureStatus
-        }
-
-        // Reconcile status from both APIs. Treat as allowed if either API reports authorized.
-        if captureStatus == .authorized || recordStatus == .authorized {
-            return .authorized
-        }
-        if captureStatus == .notDetermined || recordStatus == .notDetermined {
-            return .notDetermined
-        }
-        if captureStatus == .restricted || recordStatus == .restricted {
-            return .restricted
-        }
-        return .denied
+        AVCaptureDevice.authorizationStatus(for: .audio)
     }
 
     static var speechStatus: SFSpeechRecognizerAuthorizationStatus {
@@ -45,22 +16,18 @@ struct Permissions {
     }
 
     static func requestMicrophone(completion: @escaping (Bool) -> Void) {
-        let captureStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-        if captureStatus == .notDetermined {
-            AVCaptureDevice.requestAccess(for: .audio) { _ in
-                DispatchQueue.main.async { completion(microphoneAuthorized) }
+        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+        case .authorized:
+            completion(true)
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .audio) { granted in
+                DispatchQueue.main.async { completion(granted) }
             }
-            return
+        case .denied, .restricted:
+            completion(false)
+        @unknown default:
+            completion(false)
         }
-
-        if #available(macOS 14.0, *), AVAudioApplication.shared.recordPermission == .undetermined {
-            AVAudioApplication.requestRecordPermission { _ in
-                DispatchQueue.main.async { completion(microphoneAuthorized) }
-            }
-            return
-        }
-
-        completion(microphoneAuthorized)
     }
 
     static func requestSpeechRecognition(completion: @escaping (Bool) -> Void) {
@@ -85,9 +52,9 @@ struct Permissions {
     }
 
     static func requestForOnboarding(completion: @escaping (Bool) -> Void) {
-        requestSpeechRecognition { speechGranted in
-            requestMicrophone { micGranted in
-                completion(speechGranted && micGranted)
+        requestMicrophone { micGranted in
+            requestSpeechRecognition { speechGranted in
+                completion(micGranted && speechGranted)
             }
         }
     }

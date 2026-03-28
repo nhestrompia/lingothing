@@ -218,43 +218,34 @@ struct NotchContentView: View {
             }
         }
 
-        if Permissions.hasUndeterminedPermissions {
-            // Dismiss overlay before system permission alert so it's not hidden behind the notch window.
+        if !Permissions.microphoneAuthorized || !Permissions.speechAuthorized {
+            // Dismiss overlay before system permission alerts so they are never hidden.
             appState.currentPhase = .idle
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                 NSApp.activate(ignoringOtherApps: true)
                 Permissions.requestAll { granted in
                     DispatchQueue.main.async {
-                        guard granted else {
-                            appState.lastMatchScore = 0
-                            appState.currentPhase = .idle
+                        if granted {
+                            appState.currentPhrase = phrase
+                            appState.currentPhase = .expanded
+                            launchListening()
                             return
                         }
+
                         appState.currentPhrase = phrase
                         appState.currentPhase = .expanded
+                        resetAudioLevels()
+
+                        let micStatus = Permissions.microphoneStatus
+                        let speechStatus = Permissions.speechStatus
+                        if micStatus == .denied || micStatus == .restricted {
+                            Permissions.openMicrophonePrivacySettings()
+                        }
+                        if speechStatus == .denied || speechStatus == .restricted {
+                            Permissions.openSpeechPrivacySettings()
+                        }
                     }
                 }
-            }
-            return
-        }
-
-        let micDenied = {
-            let status = Permissions.microphoneStatus
-            return status == .denied || status == .restricted
-        }()
-        let speechDenied = {
-            let status = Permissions.speechStatus
-            return status == .denied || status == .restricted
-        }()
-
-        if micDenied || speechDenied {
-            resetAudioLevels()
-            appState.currentPhase = .expanded
-            if micDenied {
-                Permissions.openMicrophonePrivacySettings()
-            }
-            if speechDenied {
-                Permissions.openSpeechPrivacySettings()
             }
             return
         }
