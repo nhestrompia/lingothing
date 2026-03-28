@@ -1,6 +1,6 @@
 cask "lingothing" do
-  version "0.1.31"
-  sha256 "88cddfc3b8025495aa5bda8c8f3fae081fe8b7f01826b2c7f5d9dd0f1f04917e"
+  version "0.1.32"
+  sha256 "3a817d857dc6e93ecd6928fbbff62d6484861ac2470d6f7f1656db0db1736eaa"
 
   url "https://github.com/nhestrompia/lingothing/releases/download/v#{version}/LingoThing-#{version}.app.zip"
   name "LingoThing"
