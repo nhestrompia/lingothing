@@ -4,7 +4,19 @@ import AppKit
 
 struct Permissions {
     static var microphoneStatus: AVAuthorizationStatus {
-        AVCaptureDevice.authorizationStatus(for: .audio)
+        if #available(macOS 14.0, *) {
+            switch AVAudioApplication.shared.recordPermission {
+            case .granted:
+                return .authorized
+            case .denied:
+                return .denied
+            case .undetermined:
+                return .notDetermined
+            @unknown default:
+                return .restricted
+            }
+        }
+        return AVCaptureDevice.authorizationStatus(for: .audio)
     }
 
     static var speechStatus: SFSpeechRecognizerAuthorizationStatus {
@@ -16,6 +28,22 @@ struct Permissions {
     }
 
     static func requestMicrophone(completion: @escaping (Bool) -> Void) {
+        if #available(macOS 14.0, *) {
+            switch AVAudioApplication.shared.recordPermission {
+            case .granted:
+                completion(true)
+            case .undetermined:
+                AVAudioApplication.requestRecordPermission { granted in
+                    DispatchQueue.main.async { completion(granted) }
+                }
+            case .denied:
+                completion(false)
+            @unknown default:
+                completion(false)
+            }
+            return
+        }
+
         switch AVCaptureDevice.authorizationStatus(for: .audio) {
         case .authorized:
             completion(true)
@@ -58,7 +86,7 @@ struct Permissions {
     }
 
     static var microphoneAuthorized: Bool {
-        AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
+        microphoneStatus == .authorized
     }
 
     static var speechAuthorized: Bool {

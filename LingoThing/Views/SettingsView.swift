@@ -360,6 +360,10 @@ struct SettingsView: View {
                         .font(.caption)
                         .foregroundStyle(Constants.Colors.successGreen)
                 }
+
+                Text("If you just changed permissions in System Settings, quit and reopen LingoThing to refresh TCC state.")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
             }
         }
         .formStyle(.grouped)

@@ -238,12 +238,6 @@ struct NotchContentView: View {
             return
         }
 
-        guard Permissions.microphoneAuthorized && Permissions.speechAuthorized else {
-            resetAudioLevels()
-            appState.currentPhase = .expanded
-            return
-        }
-
         launchListening()
     }
 
