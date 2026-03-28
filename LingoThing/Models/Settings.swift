@@ -1,6 +1,8 @@
 import Foundation
 
 struct AppSettings: Codable, Equatable {
+    static let allowedIntervalMinutes: [Int] = [10, 15, 30, 60, 120]
+
     enum PracticeLanguage: String, Codable, CaseIterable, Identifiable {
         case greek
         case spanish
@@ -110,7 +112,10 @@ struct AppSettings: Codable, Equatable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         practiceLanguage = try container.decodeIfPresent(PracticeLanguage.self, forKey: .practiceLanguage) ?? .greek
-        intervalMinutes = try container.decodeIfPresent(Int.self, forKey: .intervalMinutes) ?? Constants.Scheduler.defaultIntervalMinutes
+        let savedInterval = try container.decodeIfPresent(Int.self, forKey: .intervalMinutes) ?? Constants.Scheduler.defaultIntervalMinutes
+        intervalMinutes = Self.allowedIntervalMinutes.contains(savedInterval)
+            ? savedInterval
+            : Constants.Scheduler.defaultIntervalMinutes
         activeHoursStart = try container.decodeIfPresent(Int.self, forKey: .activeHoursStart) ?? Constants.Scheduler.defaultActiveHoursStart
         activeHoursEnd = try container.decodeIfPresent(Int.self, forKey: .activeHoursEnd) ?? Constants.Scheduler.defaultActiveHoursEnd
         snoozeMinutes = try container.decodeIfPresent(Int.self, forKey: .snoozeMinutes) ?? Constants.Scheduler.defaultSnoozeMinutes

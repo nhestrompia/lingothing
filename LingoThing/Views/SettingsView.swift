@@ -166,7 +166,7 @@ struct SettingsView: View {
         Form {
             Section("Timing") {
                 Picker("Frequency", selection: $appState.settings.intervalMinutes) {
-                    Text("Every minute (test)").tag(1)
+                    Text("Every 10 min").tag(10)
                     Text("Every 15 min").tag(15)
                     Text("Every 30 min").tag(30)
                     Text("Every hour").tag(60)

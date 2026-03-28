@@ -10,6 +10,7 @@ CASK_PATH="Casks/lingothing.rb"
 NOTARY_PROFILE="lingothing-notary"
 VERSION=""
 REPO=""
+REMOTE=""
 IDENTITY=""
 
 RUN_TESTS="true"
@@ -27,6 +28,7 @@ Required:
 
 Options:
   --repo <owner/repo>              GitHub repo (default: inferred from git remote)
+  --remote <name>                  Git remote name for pushing tags (default: inferred)
   --project <path>                 Xcode project path (default: LingoThing.xcodeproj)
   --scheme <name>                  Xcode scheme (default: LingoThing)
   --icon <path>                    Source PNG icon path (default: icons/install.png)
@@ -36,7 +38,7 @@ Options:
   --cask-path <path>               Cask file path (default: Casks/lingothing.rb)
   --skip-tests                     Skip test step
   --create-tag                     Create git tag v<version>
-  --push-tag                       Push tag to origin (implies --create-tag)
+  --push-tag                       Push tag to selected remote (implies --create-tag)
   --upload-release                 Create/update GitHub release via gh CLI
   --allow-dirty                    Allow running with uncommitted changes
   --help                           Show this help
@@ -60,6 +62,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --repo)
       REPO="$2"
+      shift 2
+      ;;
+    --remote)
+      REMOTE="$2"
       shift 2
       ;;
     --project)
@@ -148,9 +154,22 @@ if [[ "${ALLOW_DIRTY}" != "true" ]]; then
   fi
 fi
 
+infer_remote_name() {
+  if git remote get-url origin >/dev/null 2>&1; then
+    echo "origin"
+    return 0
+  fi
+  if git remote get-url lingothing >/dev/null 2>&1; then
+    echo "lingothing"
+    return 0
+  fi
+  git remote | head -n1
+}
+
 infer_repo_from_remote() {
+  local remote_name="$1"
   local remote_url
-  remote_url="$(git remote get-url origin 2>/dev/null || true)"
+  remote_url="$(git remote get-url "${remote_name}" 2>/dev/null || true)"
   if [[ -z "${remote_url}" ]]; then
     return 1
   fi
@@ -162,11 +181,23 @@ infer_repo_from_remote() {
 }
 
 if [[ -z "${REPO}" ]]; then
-  REPO="$(infer_repo_from_remote || true)"
+  if [[ -z "${REMOTE}" ]]; then
+    REMOTE="$(infer_remote_name || true)"
+  fi
+  REPO="$(infer_repo_from_remote "${REMOTE}" || true)"
 fi
 
 if [[ -z "${REPO}" ]]; then
   echo "Could not infer GitHub repo. Pass --repo <owner/repo>." >&2
+  exit 1
+fi
+
+if [[ -z "${REMOTE}" ]]; then
+  REMOTE="$(infer_remote_name || true)"
+fi
+
+if [[ -z "${REMOTE}" ]]; then
+  echo "Could not infer git remote. Pass --remote <name>." >&2
   exit 1
 fi
 
@@ -187,6 +218,7 @@ TAG="v${VERSION}"
 
 echo "==> Release ${VERSION}"
 echo "Repo: ${REPO}"
+echo "Remote: ${REMOTE}"
 echo "Project: ${PROJECT_PATH}"
 echo "Scheme: ${SCHEME}"
 echo "Signing identity: ${IDENTITY}"
@@ -255,8 +287,8 @@ if [[ "${CREATE_TAG}" == "true" ]]; then
 fi
 
 if [[ "${PUSH_TAG}" == "true" ]]; then
-  echo "==> Pushing tag ${TAG}"
-  git push origin "${TAG}"
+  echo "==> Pushing tag ${TAG} to ${REMOTE}"
+  git push "${REMOTE}" "${TAG}"
 fi
 
 if [[ "${UPLOAD_RELEASE}" == "true" ]]; then
