@@ -8,6 +8,7 @@ ICON_SOURCE="icons/install.png"
 DIST_DIR="dist"
 CASK_PATH="Casks/lingothing.rb"
 NOTARY_PROFILE="lingothing-notary"
+ENTITLEMENTS_PATH="LingoThing/LingoThing.entitlements"
 VERSION=""
 REPO=""
 REMOTE=""
@@ -34,6 +35,7 @@ Options:
   --icon <path>                    Source PNG icon path (default: icons/install.png)
   --identity <codesign identity>   Developer ID Application identity name or SHA
   --notary-profile <profile>       notarytool keychain profile (default: lingothing-notary)
+  --entitlements <path>            Entitlements plist for release signing (default: LingoThing/LingoThing.entitlements)
   --dist <path>                    Output directory (default: dist)
   --cask-path <path>               Cask file path (default: Casks/lingothing.rb)
   --skip-tests                     Skip test step
@@ -86,6 +88,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --notary-profile)
       NOTARY_PROFILE="$2"
+      shift 2
+      ;;
+    --entitlements)
+      ENTITLEMENTS_PATH="$2"
       shift 2
       ;;
     --dist)
@@ -215,7 +221,6 @@ APP_PATH="${DIST_DIR}/${APP_NAME}.app"
 ZIP_PATH="${DIST_DIR}/${APP_NAME}-${VERSION}.app.zip"
 CHECKSUMS_PATH="${DIST_DIR}/checksums.txt"
 TAG="v${VERSION}"
-SIGNING_ENTITLEMENTS_PATH="${DIST_DIR}/${APP_NAME}.release-signing-entitlements.plist"
 
 echo "==> Release ${VERSION}"
 echo "Repo: ${REPO}"
@@ -223,6 +228,7 @@ echo "Remote: ${REMOTE}"
 echo "Project: ${PROJECT_PATH}"
 echo "Scheme: ${SCHEME}"
 echo "Signing identity: ${IDENTITY}"
+echo "Entitlements: ${ENTITLEMENTS_PATH}"
 echo "Notary profile: ${NOTARY_PROFILE}"
 
 if [[ "${RUN_TESTS}" == "true" ]]; then
@@ -247,20 +253,20 @@ if [[ ! -d "${APP_PATH}" ]]; then
   exit 1
 fi
 
-echo "==> Signing app"
-rm -f "${SIGNING_ENTITLEMENTS_PATH}"
-codesign -d --entitlements - --xml "${APP_PATH}" 2>&1 \
-  | awk 'BEGIN{printing=0} /^<\?xml/{printing=1} printing{print}' > "${SIGNING_ENTITLEMENTS_PATH}"
-if [[ -s "${SIGNING_ENTITLEMENTS_PATH}" ]]; then
-  echo "==> Preserving embedded entitlements for Developer ID signature"
-  codesign --force --deep --options runtime --timestamp --sign "${IDENTITY}" --entitlements "${SIGNING_ENTITLEMENTS_PATH}" "${APP_PATH}"
-else
-  echo "==> No embedded entitlements detected; signing without explicit entitlements"
-  codesign --force --deep --options runtime --timestamp --sign "${IDENTITY}" "${APP_PATH}"
+if [[ ! -f "${ENTITLEMENTS_PATH}" ]]; then
+  echo "Missing entitlements file: ${ENTITLEMENTS_PATH}" >&2
+  exit 1
 fi
+
+echo "==> Signing app"
+codesign --force --deep --options runtime --timestamp --sign "${IDENTITY}" --entitlements "${ENTITLEMENTS_PATH}" "${APP_PATH}"
 codesign --verify --deep --strict --verbose=2 "${APP_PATH}"
 if ! codesign -d --entitlements - --xml "${APP_PATH}" 2>&1 | grep -q "com.apple.security.device.audio-input"; then
   echo "Missing com.apple.security.device.audio-input entitlement after release signing." >&2
+  exit 1
+fi
+if codesign -d --entitlements - --xml "${APP_PATH}" 2>&1 | grep -q "com.apple.security.get-task-allow"; then
+  echo "Invalid release entitlement detected: com.apple.security.get-task-allow" >&2
   exit 1
 fi
 
@@ -269,7 +275,16 @@ rm -f "${ZIP_PATH}"
 ditto -c -k --sequesterRsrc --keepParent "${APP_PATH}" "${ZIP_PATH}"
 
 echo "==> Submitting notarization"
-xcrun notarytool submit "${ZIP_PATH}" --keychain-profile "${NOTARY_PROFILE}" --wait
+NOTARY_OUTPUT="$(xcrun notarytool submit "${ZIP_PATH}" --keychain-profile "${NOTARY_PROFILE}" --wait --output-format json)"
+echo "${NOTARY_OUTPUT}"
+if ! echo "${NOTARY_OUTPUT}" | grep -q '"status"[[:space:]]*:[[:space:]]*"Accepted"'; then
+  SUBMISSION_ID="$(echo "${NOTARY_OUTPUT}" | sed -nE 's/.*"id"[[:space:]]*:[[:space:]]*"([^"]+)".*/\1/p' | head -n1)"
+  if [[ -n "${SUBMISSION_ID}" ]]; then
+    echo "==> Notarization failed. Fetching detailed log for ${SUBMISSION_ID}"
+    xcrun notarytool log "${SUBMISSION_ID}" --keychain-profile "${NOTARY_PROFILE}" || true
+  fi
+  exit 1
+fi
 
 echo "==> Stapling notarization ticket"
 xcrun stapler staple "${APP_PATH}"
@@ -283,7 +298,6 @@ rm -f "${ZIP_PATH}"
 ditto -c -k --sequesterRsrc --keepParent "${APP_PATH}" "${ZIP_PATH}"
 ZIP_SHA="$(shasum -a 256 "${ZIP_PATH}" | awk '{print $1}')"
 printf "%s  %s\n" "${ZIP_SHA}" "$(basename "${ZIP_PATH}")" > "${CHECKSUMS_PATH}"
-rm -f "${SIGNING_ENTITLEMENTS_PATH}"
 
 echo "==> Updating Homebrew cask"
 ./scripts/generate-homebrew-cask.sh \

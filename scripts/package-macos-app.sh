@@ -54,14 +54,6 @@ upsert_plist_string() {
   fi
 }
 
-extract_entitlements_xml() {
-  local app_path="$1"
-  local out_path="$2"
-  codesign -d --entitlements - --xml "${app_path}" 2>&1 \
-    | awk 'BEGIN{printing=0} /^<\?xml/{printing=1} printing{print}' > "${out_path}"
-  [[ -s "${out_path}" ]]
-}
-
 ICON_SOURCE="${ICON_SOURCE_DEFAULT}"
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -175,15 +167,6 @@ fi
 echo "==> Copying app bundle to ${APP_PATH}"
 ditto "${BUILT_APP}" "${APP_PATH}"
 
-SIGNING_ENTITLEMENTS="${DIST_DIR}/${APP_NAME}.signing-entitlements.plist"
-rm -f "${SIGNING_ENTITLEMENTS}"
-if extract_entitlements_xml "${BUILT_APP}" "${SIGNING_ENTITLEMENTS}"; then
-  echo "==> Preserving app entitlements during re-sign"
-else
-  rm -f "${SIGNING_ENTITLEMENTS}"
-  echo "==> No embedded entitlements found in built app; signing without explicit entitlements"
-fi
-
 INFO_PLIST="${APP_PATH}/Contents/Info.plist"
 upsert_plist_string "${INFO_PLIST}" "CFBundleIdentifier" "${BUNDLE_ID}"
 upsert_plist_string "${INFO_PLIST}" "CFBundleShortVersionString" "${VERSION}"
@@ -217,11 +200,7 @@ fi
 
 if command -v codesign >/dev/null 2>&1; then
   echo "==> Applying ad-hoc signature"
-  if [[ -f "${SIGNING_ENTITLEMENTS}" ]]; then
-    codesign --force --deep --sign - --entitlements "${SIGNING_ENTITLEMENTS}" "${APP_PATH}"
-  else
-    codesign --force --deep --sign - "${APP_PATH}"
-  fi
+  codesign --force --deep --sign - --preserve-metadata=entitlements "${APP_PATH}"
 
   if ! codesign -d --entitlements - --xml "${APP_PATH}" 2>&1 | grep -q "com.apple.security.device.audio-input"; then
     echo "Missing com.apple.security.device.audio-input entitlement after signing." >&2
@@ -276,8 +255,6 @@ if [[ "${GENERATE_CASK}" == "true" ]]; then
     --sha256 "${SHA_ZIP}" \
     --repo "${GITHUB_REPO}"
 fi
-
-rm -f "${SIGNING_ENTITLEMENTS}"
 
 cat <<SUMMARY
 
