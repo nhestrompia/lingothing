@@ -215,6 +215,7 @@ APP_PATH="${DIST_DIR}/${APP_NAME}.app"
 ZIP_PATH="${DIST_DIR}/${APP_NAME}-${VERSION}.app.zip"
 CHECKSUMS_PATH="${DIST_DIR}/checksums.txt"
 TAG="v${VERSION}"
+SIGNING_ENTITLEMENTS_PATH="${DIST_DIR}/${APP_NAME}.release-signing-entitlements.plist"
 
 echo "==> Release ${VERSION}"
 echo "Repo: ${REPO}"
@@ -247,8 +248,21 @@ if [[ ! -d "${APP_PATH}" ]]; then
 fi
 
 echo "==> Signing app"
-codesign --force --deep --options runtime --timestamp --sign "${IDENTITY}" "${APP_PATH}"
+rm -f "${SIGNING_ENTITLEMENTS_PATH}"
+codesign -d --entitlements - --xml "${APP_PATH}" 2>&1 \
+  | awk 'BEGIN{printing=0} /^<\?xml/{printing=1} printing{print}' > "${SIGNING_ENTITLEMENTS_PATH}"
+if [[ -s "${SIGNING_ENTITLEMENTS_PATH}" ]]; then
+  echo "==> Preserving embedded entitlements for Developer ID signature"
+  codesign --force --deep --options runtime --timestamp --sign "${IDENTITY}" --entitlements "${SIGNING_ENTITLEMENTS_PATH}" "${APP_PATH}"
+else
+  echo "==> No embedded entitlements detected; signing without explicit entitlements"
+  codesign --force --deep --options runtime --timestamp --sign "${IDENTITY}" "${APP_PATH}"
+fi
 codesign --verify --deep --strict --verbose=2 "${APP_PATH}"
+if ! codesign -d --entitlements - --xml "${APP_PATH}" 2>&1 | grep -q "com.apple.security.device.audio-input"; then
+  echo "Missing com.apple.security.device.audio-input entitlement after release signing." >&2
+  exit 1
+fi
 
 echo "==> Creating signed ZIP for notarization"
 rm -f "${ZIP_PATH}"
@@ -269,6 +283,7 @@ rm -f "${ZIP_PATH}"
 ditto -c -k --sequesterRsrc --keepParent "${APP_PATH}" "${ZIP_PATH}"
 ZIP_SHA="$(shasum -a 256 "${ZIP_PATH}" | awk '{print $1}')"
 printf "%s  %s\n" "${ZIP_SHA}" "$(basename "${ZIP_PATH}")" > "${CHECKSUMS_PATH}"
+rm -f "${SIGNING_ENTITLEMENTS_PATH}"
 
 echo "==> Updating Homebrew cask"
 ./scripts/generate-homebrew-cask.sh \

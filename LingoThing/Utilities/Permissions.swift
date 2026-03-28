@@ -4,7 +4,19 @@ import AppKit
 
 struct Permissions {
     static var microphoneStatus: AVAuthorizationStatus {
-        AVCaptureDevice.authorizationStatus(for: .audio)
+        if #available(macOS 14.0, *) {
+            switch AVAudioApplication.shared.recordPermission {
+            case .granted:
+                return .authorized
+            case .denied:
+                return .denied
+            case .undetermined:
+                return .notDetermined
+            @unknown default:
+                break
+            }
+        }
+        return AVCaptureDevice.authorizationStatus(for: .audio)
     }
 
     static var speechStatus: SFSpeechRecognizerAuthorizationStatus {
@@ -16,6 +28,42 @@ struct Permissions {
     }
 
     static func requestMicrophone(completion: @escaping (Bool) -> Void) {
+        if #available(macOS 14.0, *) {
+            switch AVAudioApplication.shared.recordPermission {
+            case .granted:
+                completion(true)
+                return
+            case .denied:
+                completion(false)
+                return
+            case .undetermined:
+                AVAudioApplication.requestRecordPermission { granted in
+                    DispatchQueue.main.async {
+                        if granted {
+                            completion(true)
+                            return
+                        }
+
+                        // Fallback path for edge cases where AVAudioApplication
+                        // returns without moving AVFoundation TCC state.
+                        let captureStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+                        if captureStatus == .notDetermined {
+                            AVCaptureDevice.requestAccess(for: .audio) { fallbackGranted in
+                                DispatchQueue.main.async {
+                                    completion(fallbackGranted)
+                                }
+                            }
+                        } else {
+                            completion(captureStatus == .authorized)
+                        }
+                    }
+                }
+                return
+            @unknown default:
+                break
+            }
+        }
+
         switch AVCaptureDevice.authorizationStatus(for: .audio) {
         case .authorized:
             completion(true)
