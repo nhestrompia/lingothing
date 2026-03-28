@@ -35,6 +35,7 @@ struct NotchCardView: View {
                         .background(Circle().fill(Color.white.opacity(0.08)))
                 }
                 .buttonStyle(.plain)
+                .padding(.trailing, 6)
             }
 
             // Greek phrase

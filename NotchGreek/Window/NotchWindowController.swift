@@ -120,8 +120,8 @@ final class NotchWindowController {
         let targetFrame = ScreenGeometry.expandedCardFrame(for: geometryScreen, height: height)
 
         NSAnimationContext.runAnimationGroup { ctx in
-            ctx.duration = 0.38
-            ctx.timingFunction = CAMediaTimingFunction(controlPoints: 0.22, 0.8, 0.2, 1.0)
+            ctx.duration = 0.46
+            ctx.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.88, 0.2, 1.0)
             window.animator().setFrame(targetFrame, display: true)
         }
     }

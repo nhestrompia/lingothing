@@ -46,6 +46,7 @@ struct NotchContentView: View {
     @State private var skipNextAutoStart = false
     @State private var autoStartWorkItem: DispatchWorkItem?
     @State private var audioLevels: [CGFloat] = Array(repeating: 0, count: 12)
+    @State private var animatedPhaseKey: String = "idle"
 
     var body: some View {
         ZStack {
@@ -126,6 +127,9 @@ struct NotchContentView: View {
                     EmptyView()
                 }
             }
+            .id(animatedPhaseKey)
+            .transition(.opacity)
+            .animation(.easeInOut(duration: 0.24), value: animatedPhaseKey)
             .frame(
                 maxWidth: .infinity,
                 maxHeight: .infinity,
@@ -133,7 +137,11 @@ struct NotchContentView: View {
             )
             .padding(.top, contentTopPadding)
         }
+        .onAppear {
+            animatedPhaseKey = phaseKey(for: appState.currentPhase)
+        }
         .onChange(of: appState.currentPhase) { _, phase in
+            animatedPhaseKey = phaseKey(for: phase)
             if phase == .expanded {
                 if let phrase = appState.currentPhrase {
                     maybeStartListeningAutomatically(for: phrase)
@@ -406,8 +414,21 @@ struct NotchContentView: View {
             return
         }
 
-        withAnimation(.spring(duration: 0.25)) {
-            appState.currentPhase = .expanded
+        appState.currentPhase = .expanded
+    }
+
+    private func phaseKey(for phase: AppPhase) -> String {
+        switch phase {
+        case .idle:
+            return "idle"
+        case .pulse:
+            return "pulse"
+        case .expanded:
+            return "expanded"
+        case .listening:
+            return "listening"
+        case .completion:
+            return "completion"
         }
     }
 
