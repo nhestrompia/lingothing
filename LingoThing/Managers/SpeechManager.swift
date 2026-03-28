@@ -202,15 +202,20 @@ final class SpeechManager: NSObject, SFSpeechRecognizerDelegate {
     private let silentFrameThreshold = 24
 
     private func trackAudio(buffer: AVAudioPCMBuffer) {
-        guard let channelData = buffer.floatChannelData?[0] else { return }
+        guard let channelData = buffer.floatChannelData else { return }
         let frameLength = Int(buffer.frameLength)
         guard frameLength > 0 else { return }
+        let channelCount = Int(buffer.format.channelCount)
+        guard channelCount > 0 else { return }
 
         var rms: Float = 0
-        for i in 0..<frameLength {
-            rms += channelData[i] * channelData[i]
+        for channel in 0..<channelCount {
+            let samples = channelData[channel]
+            for i in 0..<frameLength {
+                rms += samples[i] * samples[i]
+            }
         }
-        rms = sqrtf(rms / Float(frameLength))
+        rms = sqrtf(rms / Float(frameLength * channelCount))
         let db = 20 * log10f(max(rms, 1e-10))
         let normalized = CGFloat(min(max((db + 60) / 60, 0), 1))
 
