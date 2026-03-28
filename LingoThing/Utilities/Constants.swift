@@ -13,7 +13,7 @@ enum Constants {
 
     enum Layout {
         static let pulseWidth: CGFloat = 430
-        static let pulseHeight: CGFloat = 72
+        static let pulseHeight: CGFloat = 88
         static let cardWidth: CGFloat = 364
         static let expandedCardHeight: CGFloat = 216
         static let listeningCardHeight: CGFloat = 224

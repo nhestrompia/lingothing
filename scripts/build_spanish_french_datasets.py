@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build Spanish and French datasets compatible with NotchGreek Phrase schema.
+Build Spanish and French datasets compatible with LingoThing Phrase schema.
 
 This script:
 1) Snapshots source files from validated URLs into a local cache directory.
@@ -31,7 +31,7 @@ from typing import Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESOURCES = ROOT / "NotchGreek" / "Resources"
+RESOURCES = ROOT / "LingoThing" / "Resources"
 
 GREEK_PRONUN = RESOURCES / "pronunciation-items.json"
 GREEK_PHRASES = RESOURCES / "phrases.json"
@@ -511,7 +511,7 @@ def download_sources(cache_dir: Path, refresh: bool) -> dict[str, Path]:
             request = urllib.request.Request(
                 spec["url"],
                 headers={
-                    "User-Agent": "Mozilla/5.0 (compatible; NotchGreekDatasetBuilder/1.0)",
+                    "User-Agent": "Mozilla/5.0 (compatible; LingoThingDatasetBuilder/1.0)",
                     "Accept": "*/*",
                 },
             )
@@ -1170,7 +1170,7 @@ def build_for_language(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build Spanish/French NotchGreek-compatible datasets.")
+    parser = argparse.ArgumentParser(description="Build Spanish/French LingoThing-compatible datasets.")
     parser.add_argument(
         "--cache-dir",
         default=str(ROOT / ".cache" / "language-source-snapshots"),

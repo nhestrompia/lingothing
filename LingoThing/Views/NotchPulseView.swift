@@ -73,7 +73,8 @@ struct NotchPulseView: View {
             .contentShape(Capsule())
         }
         .padding(.horizontal, 22)
-        .padding(.vertical, 10)
+        .padding(.top, 32)
+        .padding(.bottom, 12)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 }

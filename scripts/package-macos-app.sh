@@ -2,8 +2,8 @@
 set -euo pipefail
 
 APP_NAME="LingoThing"
-PROJECT_PATH="NotchGreek.xcodeproj"
-SCHEME="NotchGreek"
+PROJECT_PATH="LingoThing.xcodeproj"
+SCHEME="LingoThing"
 BUNDLE_ID="com.lingothing.app"
 MIN_MACOS="14.0"
 ICON_SOURCE_DEFAULT="icons/install.png"
@@ -23,8 +23,8 @@ Usage: $0 [options]
 Options:
   --version <semver>         Release version (default: latest git tag without leading v, or 0.1.0)
   --build-number <number>    Build number (default: UTC timestamp)
-  --project <path>           Xcode project path (default: NotchGreek.xcodeproj)
-  --scheme <name>            Xcode scheme (default: NotchGreek)
+  --project <path>           Xcode project path (default: LingoThing.xcodeproj)
+  --scheme <name>            Xcode scheme (default: LingoThing)
   --bundle-id <id>           Bundle identifier (default: com.lingothing.app)
   --icon <path>              Source PNG icon path (default: icons/install.png)
   --dist <path>              Output directory (default: dist)

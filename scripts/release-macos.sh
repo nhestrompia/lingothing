@@ -2,8 +2,8 @@
 set -euo pipefail
 
 APP_NAME="LingoThing"
-PROJECT_PATH="NotchGreek.xcodeproj"
-SCHEME="NotchGreek"
+PROJECT_PATH="LingoThing.xcodeproj"
+SCHEME="LingoThing"
 ICON_SOURCE="icons/install.png"
 DIST_DIR="dist"
 CASK_PATH="Casks/lingothing.rb"
@@ -27,8 +27,8 @@ Required:
 
 Options:
   --repo <owner/repo>              GitHub repo (default: inferred from git remote)
-  --project <path>                 Xcode project path (default: NotchGreek.xcodeproj)
-  --scheme <name>                  Xcode scheme (default: NotchGreek)
+  --project <path>                 Xcode project path (default: LingoThing.xcodeproj)
+  --scheme <name>                  Xcode scheme (default: LingoThing)
   --icon <path>                    Source PNG icon path (default: icons/install.png)
   --identity <codesign identity>   Developer ID Application identity name or SHA
   --notary-profile <profile>       notarytool keychain profile (default: lingothing-notary)
