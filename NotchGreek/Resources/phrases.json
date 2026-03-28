@@ -1,0 +1,782 @@
+[
+  {
+    "id": "greet_001",
+    "greek": "Γεια σου",
+    "transliteration": "Yia sou",
+    "english": "Hello (informal)",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["γεια σου", "για σου"],
+    "contextNote": "Use with friends and peers"
+  },
+  {
+    "id": "greet_002",
+    "greek": "Γεια σας",
+    "transliteration": "Yia sas",
+    "english": "Hello (formal)",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["γεια σας", "για σας"],
+    "contextNote": "Use with strangers or elders"
+  },
+  {
+    "id": "greet_003",
+    "greek": "Καλημέρα",
+    "transliteration": "Kalimera",
+    "english": "Good morning",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["καλημέρα"],
+    "contextNote": null
+  },
+  {
+    "id": "greet_004",
+    "greek": "Καλησπέρα",
+    "transliteration": "Kalispera",
+    "english": "Good evening",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["καλησπέρα"],
+    "contextNote": null
+  },
+  {
+    "id": "greet_005",
+    "greek": "Καληνύχτα",
+    "transliteration": "Kalinihta",
+    "english": "Good night",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["καληνύχτα"],
+    "contextNote": null
+  },
+  {
+    "id": "greet_006",
+    "greek": "Τι κάνεις;",
+    "transliteration": "Ti kanis?",
+    "english": "How are you? (informal)",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["τι κάνεις", "τι κανεις"],
+    "contextNote": null
+  },
+  {
+    "id": "greet_007",
+    "greek": "Καλά, ευχαριστώ",
+    "transliteration": "Kala, efharisto",
+    "english": "Fine, thank you",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["καλά ευχαριστώ", "καλα ευχαριστω"],
+    "contextNote": null
+  },
+  {
+    "id": "greet_008",
+    "greek": "Χαίρω πολύ",
+    "transliteration": "Hero poli",
+    "english": "Nice to meet you",
+    "category": "greetings",
+    "difficulty": 2,
+    "acceptedPronunciations": ["χαίρω πολύ", "χαιρω πολυ"],
+    "contextNote": "Formal introduction"
+  },
+  {
+    "id": "greet_009",
+    "greek": "Αντίο",
+    "transliteration": "Adio",
+    "english": "Goodbye",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["αντίο", "αντιο"],
+    "contextNote": null
+  },
+  {
+    "id": "greet_010",
+    "greek": "Τα λέμε",
+    "transliteration": "Ta leme",
+    "english": "See you later",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["τα λέμε", "τα λεμε"],
+    "contextNote": "Casual goodbye"
+  },
+  {
+    "id": "greet_011",
+    "greek": "Με λένε...",
+    "transliteration": "Me lene...",
+    "english": "My name is...",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["με λένε", "με λεμε"],
+    "contextNote": null
+  },
+  {
+    "id": "greet_012",
+    "greek": "Πώς σε λένε;",
+    "transliteration": "Pos se lene?",
+    "english": "What is your name?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": ["πώς σε λένε", "πως σε λενε"],
+    "contextNote": "Informal"
+  },
+  {
+    "id": "rest_001",
+    "greek": "Ένα καφέ, παρακαλώ",
+    "transliteration": "Ena kafe, parakalo",
+    "english": "One coffee, please",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": ["ένα καφέ παρακαλώ", "ενα καφε παρακαλω"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_002",
+    "greek": "Τον λογαριασμό, παρακαλώ",
+    "transliteration": "Ton logariasmo, parakalo",
+    "english": "The bill, please",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["τον λογαριασμό παρακαλώ", "τον λογαριασμο παρακαλω"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_003",
+    "greek": "Ένα νερό, παρακαλώ",
+    "transliteration": "Ena nero, parakalo",
+    "english": "A water, please",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": ["ένα νερό παρακαλώ", "ενα νερο παρακαλω"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_004",
+    "greek": "Θα ήθελα ένα τραπέζι για δύο",
+    "transliteration": "Tha ithela ena trapezi ya dio",
+    "english": "I would like a table for two",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["θα ήθελα ένα τραπέζι για δύο", "θα ηθελα ενα τραπεζι για δυο"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_005",
+    "greek": "Τι μου προτείνετε;",
+    "transliteration": "Ti mou protinete?",
+    "english": "What do you recommend?",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["τι μου προτείνετε", "τι μου προτεινετε"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_006",
+    "greek": "Είναι πολύ νόστιμο",
+    "transliteration": "Ine poli nostimo",
+    "english": "It's very delicious",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": ["είναι πολύ νόστιμο", "ειναι πολυ νοστιμο"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_007",
+    "greek": "Χωρίς ζάχαρη",
+    "transliteration": "Horis zahari",
+    "english": "Without sugar",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": ["χωρίς ζάχαρη", "χωρις ζαχαρη"],
+    "contextNote": "For coffee orders"
+  },
+  {
+    "id": "rest_008",
+    "greek": "Μπορώ να δω τον κατάλογο;",
+    "transliteration": "Boro na do ton katalogo?",
+    "english": "Can I see the menu?",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["μπορώ να δω τον κατάλογο", "μπορω να δω τον καταλογο"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_009",
+    "greek": "Ένα φραπέ μέτριο",
+    "transliteration": "Ena frape metrio",
+    "english": "A medium-sweet frappe",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["ένα φραπέ μέτριο", "ενα φραπε μετριο"],
+    "contextNote": "Classic Greek coffee order"
+  },
+  {
+    "id": "rest_010",
+    "greek": "Μια μπύρα, παρακαλώ",
+    "transliteration": "Mia bira, parakalo",
+    "english": "A beer, please",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": ["μια μπύρα παρακαλώ", "μια μπυρα παρακαλω"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_011",
+    "greek": "Είμαι χορτοφάγος",
+    "transliteration": "Ime hortofagos",
+    "english": "I am vegetarian",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["είμαι χορτοφάγος", "ειμαι χορτοφαγος"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_012",
+    "greek": "Ήταν υπέροχο",
+    "transliteration": "Itan iperoho",
+    "english": "It was wonderful",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["ήταν υπέροχο", "ηταν υπεροχο"],
+    "contextNote": "Compliment to the chef"
+  },
+  {
+    "id": "shop_001",
+    "greek": "Πόσο κάνει;",
+    "transliteration": "Poso kani?",
+    "english": "How much does it cost?",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": ["πόσο κάνει", "ποσο κανει"],
+    "contextNote": null
+  },
+  {
+    "id": "shop_002",
+    "greek": "Είναι πολύ ακριβό",
+    "transliteration": "Ine poli akrivo",
+    "english": "It's too expensive",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": ["είναι πολύ ακριβό", "ειναι πολυ ακριβο"],
+    "contextNote": null
+  },
+  {
+    "id": "shop_003",
+    "greek": "Μπορείτε να μου κάνετε έκπτωση;",
+    "transliteration": "Borite na mou kanete ekptosi?",
+    "english": "Can you give me a discount?",
+    "category": "shopping",
+    "difficulty": 3,
+    "acceptedPronunciations": ["μπορείτε να μου κάνετε έκπτωση", "μπορειτε να μου κανετε εκπτωση"],
+    "contextNote": "Common at markets"
+  },
+  {
+    "id": "shop_004",
+    "greek": "Θα το πάρω",
+    "transliteration": "Tha to paro",
+    "english": "I'll take it",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": ["θα το πάρω", "θα το παρω"],
+    "contextNote": null
+  },
+  {
+    "id": "shop_005",
+    "greek": "Απλά κοιτάζω",
+    "transliteration": "Apla kitazo",
+    "english": "Just looking",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": ["απλά κοιτάζω", "απλα κοιταζω"],
+    "contextNote": null
+  },
+  {
+    "id": "shop_006",
+    "greek": "Έχετε μεγαλύτερο νούμερο;",
+    "transliteration": "Ehete megalitero noumero?",
+    "english": "Do you have a bigger size?",
+    "category": "shopping",
+    "difficulty": 2,
+    "acceptedPronunciations": ["έχετε μεγαλύτερο νούμερο", "εχετε μεγαλυτερο νουμερο"],
+    "contextNote": null
+  },
+  {
+    "id": "shop_007",
+    "greek": "Δέχεστε κάρτα;",
+    "transliteration": "Deheste karta?",
+    "english": "Do you accept card?",
+    "category": "shopping",
+    "difficulty": 2,
+    "acceptedPronunciations": ["δέχεστε κάρτα", "δεχεστε καρτα"],
+    "contextNote": null
+  },
+  {
+    "id": "shop_008",
+    "greek": "Πού είναι το ταμείο;",
+    "transliteration": "Pou ine to tamio?",
+    "english": "Where is the cash register?",
+    "category": "shopping",
+    "difficulty": 2,
+    "acceptedPronunciations": ["πού είναι το ταμείο", "που ειναι το ταμειο"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_001",
+    "greek": "Πού είναι η παραλία;",
+    "transliteration": "Pou ine i paralia?",
+    "english": "Where is the beach?",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": ["πού είναι η παραλία", "που ειναι η παραλια"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_002",
+    "greek": "Ευθεία και μετά δεξιά",
+    "transliteration": "Efthia ke meta dexia",
+    "english": "Straight and then right",
+    "category": "directions",
+    "difficulty": 2,
+    "acceptedPronunciations": ["ευθεία και μετά δεξιά", "ευθεια και μετα δεξια"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_003",
+    "greek": "Είναι κοντά;",
+    "transliteration": "Ine konda?",
+    "english": "Is it nearby?",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": ["είναι κοντά", "ειναι κοντα"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_004",
+    "greek": "Πού είναι ο σταθμός;",
+    "transliteration": "Pou ine o stathmos?",
+    "english": "Where is the station?",
+    "category": "directions",
+    "difficulty": 2,
+    "acceptedPronunciations": ["πού είναι ο σταθμός", "που ειναι ο σταθμος"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_005",
+    "greek": "Πώς πάω στο αεροδρόμιο;",
+    "transliteration": "Pos pao sto aerodromio?",
+    "english": "How do I get to the airport?",
+    "category": "directions",
+    "difficulty": 2,
+    "acceptedPronunciations": ["πώς πάω στο αεροδρόμιο", "πως παω στο αεροδρομιο"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_006",
+    "greek": "Αριστερά ή δεξιά;",
+    "transliteration": "Aristera i dexia?",
+    "english": "Left or right?",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": ["αριστερά ή δεξιά", "αριστερα η δεξια"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_007",
+    "greek": "Πού μπορώ να βρω ταξί;",
+    "transliteration": "Pou boro na vro taxi?",
+    "english": "Where can I find a taxi?",
+    "category": "directions",
+    "difficulty": 2,
+    "acceptedPronunciations": ["πού μπορώ να βρω ταξί", "που μπορω να βρω ταξι"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_008",
+    "greek": "Είναι μακριά;",
+    "transliteration": "Ine makria?",
+    "english": "Is it far?",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": ["είναι μακριά", "ειναι μακρια"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_009",
+    "greek": "Χάθηκα",
+    "transliteration": "Hathika",
+    "english": "I'm lost",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": ["χάθηκα", "χαθηκα"],
+    "contextNote": null
+  },
+  {
+    "id": "dir_010",
+    "greek": "Μπορείτε να μου δείξετε στον χάρτη;",
+    "transliteration": "Borite na mou dixete ston harti?",
+    "english": "Can you show me on the map?",
+    "category": "directions",
+    "difficulty": 3,
+    "acceptedPronunciations": ["μπορείτε να μου δείξετε στον χάρτη", "μπορειτε να μου δειξετε στον χαρτη"],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_001",
+    "greek": "Βοήθεια!",
+    "transliteration": "Voithia!",
+    "english": "Help!",
+    "category": "emergency",
+    "difficulty": 1,
+    "acceptedPronunciations": ["βοήθεια", "βοηθεια"],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_002",
+    "greek": "Χρειάζομαι γιατρό",
+    "transliteration": "Hriasome yatro",
+    "english": "I need a doctor",
+    "category": "emergency",
+    "difficulty": 2,
+    "acceptedPronunciations": ["χρειάζομαι γιατρό", "χρειαζομαι γιατρο"],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_003",
+    "greek": "Καλέστε ασθενοφόρο",
+    "transliteration": "Kaleste asthenoforo",
+    "english": "Call an ambulance",
+    "category": "emergency",
+    "difficulty": 2,
+    "acceptedPronunciations": ["καλέστε ασθενοφόρο", "καλεστε ασθενοφορο"],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_004",
+    "greek": "Πού είναι το νοσοκομείο;",
+    "transliteration": "Pou ine to nosokomio?",
+    "english": "Where is the hospital?",
+    "category": "emergency",
+    "difficulty": 2,
+    "acceptedPronunciations": ["πού είναι το νοσοκομείο", "που ειναι το νοσοκομειο"],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_005",
+    "greek": "Δεν αισθάνομαι καλά",
+    "transliteration": "Den esthanome kala",
+    "english": "I don't feel well",
+    "category": "emergency",
+    "difficulty": 2,
+    "acceptedPronunciations": ["δεν αισθάνομαι καλά", "δεν αισθανομαι καλα"],
+    "contextNote": null
+  },
+  {
+    "id": "social_001",
+    "greek": "Ευχαριστώ πολύ",
+    "transliteration": "Efharisto poli",
+    "english": "Thank you very much",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["ευχαριστώ πολύ", "ευχαριστω πολυ"],
+    "contextNote": null
+  },
+  {
+    "id": "social_002",
+    "greek": "Παρακαλώ",
+    "transliteration": "Parakalo",
+    "english": "You're welcome / Please",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["παρακαλώ", "παρακαλω"],
+    "contextNote": null
+  },
+  {
+    "id": "social_003",
+    "greek": "Συγγνώμη",
+    "transliteration": "Signomi",
+    "english": "Sorry / Excuse me",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["συγγνώμη", "συγνωμη", "συγγνωμη"],
+    "contextNote": null
+  },
+  {
+    "id": "social_004",
+    "greek": "Δεν μιλάω ελληνικά",
+    "transliteration": "Den milao ellinika",
+    "english": "I don't speak Greek",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": ["δεν μιλάω ελληνικά", "δεν μιλαω ελληνικα"],
+    "contextNote": null
+  },
+  {
+    "id": "social_005",
+    "greek": "Μιλάτε αγγλικά;",
+    "transliteration": "Milate anglika?",
+    "english": "Do you speak English?",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["μιλάτε αγγλικά", "μιλατε αγγλικα"],
+    "contextNote": null
+  },
+  {
+    "id": "social_006",
+    "greek": "Μου αρέσει η Ελλάδα",
+    "transliteration": "Mou aresi i Ellada",
+    "english": "I like Greece",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["μου αρέσει η ελλάδα", "μου αρεσει η ελλαδα"],
+    "contextNote": null
+  },
+  {
+    "id": "social_007",
+    "greek": "Στην υγειά σου!",
+    "transliteration": "Stin iyia sou!",
+    "english": "Cheers! / To your health!",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["στην υγειά σου", "στην υγεια σου"],
+    "contextNote": "Used when toasting"
+  },
+  {
+    "id": "social_008",
+    "greek": "Τι δουλειά κάνεις;",
+    "transliteration": "Ti doulia kanis?",
+    "english": "What do you do for work?",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": ["τι δουλειά κάνεις", "τι δουλεια κανεις"],
+    "contextNote": null
+  },
+  {
+    "id": "social_009",
+    "greek": "Από πού είσαι;",
+    "transliteration": "Apo pou ise?",
+    "english": "Where are you from?",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["από πού είσαι", "απο που εισαι"],
+    "contextNote": null
+  },
+  {
+    "id": "social_010",
+    "greek": "Μένω εδώ κοντά",
+    "transliteration": "Meno edo konda",
+    "english": "I live nearby",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": ["μένω εδώ κοντά", "μενω εδω κοντα"],
+    "contextNote": null
+  },
+  {
+    "id": "social_011",
+    "greek": "Περάστε καλά",
+    "transliteration": "Peraste kala",
+    "english": "Have a good time",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": ["περάστε καλά", "περαστε καλα"],
+    "contextNote": null
+  },
+  {
+    "id": "social_012",
+    "greek": "Σ' αγαπώ",
+    "transliteration": "S'agapo",
+    "english": "I love you",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["σ' αγαπώ", "σ αγαπω", "σαγαπω", "σ'αγαπώ"],
+    "contextNote": null
+  },
+  {
+    "id": "num_001",
+    "greek": "Ένα, δύο, τρία",
+    "transliteration": "Ena, dio, tria",
+    "english": "One, two, three",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": ["ένα δύο τρία", "ενα δυο τρια"],
+    "contextNote": null
+  },
+  {
+    "id": "num_002",
+    "greek": "Τέσσερα, πέντε, έξι",
+    "transliteration": "Tessera, pende, exi",
+    "english": "Four, five, six",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": ["τέσσερα πέντε έξι", "τεσσερα πεντε εξι"],
+    "contextNote": null
+  },
+  {
+    "id": "num_003",
+    "greek": "Εφτά, οχτώ, εννιά, δέκα",
+    "transliteration": "Efta, ohto, enia, deka",
+    "english": "Seven, eight, nine, ten",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": ["εφτά οχτώ εννιά δέκα", "εφτα οχτω εννια δεκα", "επτά οκτώ εννέα δέκα"],
+    "contextNote": null
+  },
+  {
+    "id": "num_004",
+    "greek": "Είκοσι ευρώ",
+    "transliteration": "Ikosi evro",
+    "english": "Twenty euros",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": ["είκοσι ευρώ", "εικοσι ευρω"],
+    "contextNote": null
+  },
+  {
+    "id": "num_005",
+    "greek": "Εκατό γραμμάρια",
+    "transliteration": "Ekato gramaria",
+    "english": "One hundred grams",
+    "category": "numbers",
+    "difficulty": 2,
+    "acceptedPronunciations": ["εκατό γραμμάρια", "εκατο γραμμαρια"],
+    "contextNote": "For markets and delis"
+  },
+  {
+    "id": "num_006",
+    "greek": "Μισό κιλό",
+    "transliteration": "Miso kilo",
+    "english": "Half a kilo",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": ["μισό κιλό", "μισο κιλο"],
+    "contextNote": null
+  },
+  {
+    "id": "time_001",
+    "greek": "Τι ώρα είναι;",
+    "transliteration": "Ti ora ine?",
+    "english": "What time is it?",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": ["τι ώρα είναι", "τι ωρα ειναι"],
+    "contextNote": null
+  },
+  {
+    "id": "time_002",
+    "greek": "Σήμερα",
+    "transliteration": "Simera",
+    "english": "Today",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": ["σήμερα", "σημερα"],
+    "contextNote": null
+  },
+  {
+    "id": "time_003",
+    "greek": "Αύριο",
+    "transliteration": "Avrio",
+    "english": "Tomorrow",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": ["αύριο", "αυριο"],
+    "contextNote": null
+  },
+  {
+    "id": "time_004",
+    "greek": "Χθες",
+    "transliteration": "Hthes",
+    "english": "Yesterday",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": ["χθες", "χτες"],
+    "contextNote": null
+  },
+  {
+    "id": "time_005",
+    "greek": "Πότε φεύγει το πλοίο;",
+    "transliteration": "Pote fevyi to plio?",
+    "english": "When does the boat leave?",
+    "category": "time",
+    "difficulty": 2,
+    "acceptedPronunciations": ["πότε φεύγει το πλοίο", "ποτε φευγει το πλοιο"],
+    "contextNote": "For island hopping"
+  },
+  {
+    "id": "time_006",
+    "greek": "Στις οχτώ το πρωί",
+    "transliteration": "Stis ohto to proi",
+    "english": "At eight in the morning",
+    "category": "time",
+    "difficulty": 2,
+    "acceptedPronunciations": ["στις οχτώ το πρωί", "στις οχτω το πρωι"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_013",
+    "greek": "Θα πάρω σουβλάκι",
+    "transliteration": "Tha paro souvlaki",
+    "english": "I'll have souvlaki",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": ["θα πάρω σουβλάκι", "θα παρω σουβλακι"],
+    "contextNote": null
+  },
+  {
+    "id": "rest_014",
+    "greek": "Με τα πάντα",
+    "transliteration": "Me ta panda",
+    "english": "With everything",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": ["με τα πάντα", "με τα παντα"],
+    "contextNote": "For wraps/souvlaki"
+  },
+  {
+    "id": "rest_015",
+    "greek": "Χωρίς κρεμμύδι",
+    "transliteration": "Horis kremidi",
+    "english": "Without onion",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": ["χωρίς κρεμμύδι", "χωρις κρεμμυδι", "χωρις κρεμυδι"],
+    "contextNote": null
+  },
+  {
+    "id": "social_013",
+    "greek": "Δεν καταλαβαίνω",
+    "transliteration": "Den katalaveno",
+    "english": "I don't understand",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": ["δεν καταλαβαίνω", "δεν καταλαβαινω"],
+    "contextNote": null
+  },
+  {
+    "id": "social_014",
+    "greek": "Μπορείτε να μιλάτε πιο αργά;",
+    "transliteration": "Borite na milate pio arga?",
+    "english": "Can you speak more slowly?",
+    "category": "social",
+    "difficulty": 3,
+    "acceptedPronunciations": ["μπορείτε να μιλάτε πιο αργά", "μπορειτε να μιλατε πιο αργα"],
+    "contextNote": null
+  },
+  {
+    "id": "social_015",
+    "greek": "Ναι",
+    "transliteration": "Ne",
+    "english": "Yes",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["ναι"],
+    "contextNote": "Sounds like 'ne' not 'nai'"
+  },
+  {
+    "id": "social_016",
+    "greek": "Όχι",
+    "transliteration": "Ohi",
+    "english": "No",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": ["όχι", "οχι"],
+    "contextNote": null
+  }
+]

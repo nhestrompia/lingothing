@@ -1,0 +1,41 @@
+name: LingoThing
+options:
+  bundleIdPrefix: com.lingothing
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+
+targets:
+  LingoThing:
+    type: application
+    platform: macOS
+    sources:
+      - path: NotchGreek
+        excludes:
+          - "Resources/**"
+      - path: NotchGreek/Resources
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lingothing.app
+        PRODUCT_NAME: LingoThing
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_GENERATION_MODE: GeneratedFile
+        INFOPLIST_KEY_LSUIElement: true
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "LingoThing needs microphone access for pronunciation practice."
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "LingoThing uses speech recognition for pronunciation practice."
+        INFOPLIST_KEY_CFBundleDisplayName: LingoThing
+        INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.education"
+        ENABLE_HARDENED_RUNTIME: true
+        CODE_SIGN_ENTITLEMENTS: NotchGreek/NotchGreek.entitlements
+    entitlements:
+      path: NotchGreek/NotchGreek.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+        com.apple.security.device.audio-input: true

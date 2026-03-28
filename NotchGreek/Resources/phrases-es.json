@@ -1,0 +1,972 @@
+[
+  {
+    "id": "greet_001",
+    "greek": "Que pase",
+    "transliteration": "que pase",
+    "english": "Have a good day",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "que pase"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_002",
+    "greek": "¿Cómo estás?",
+    "transliteration": "cómo estás",
+    "english": "How are you?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "cómo estás",
+      "como estas"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_003",
+    "greek": "¿Qué tal?",
+    "transliteration": "qué tal",
+    "english": "How are you?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "qué tal",
+      "que tal"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_004",
+    "greek": "¿Cómo está usted?",
+    "transliteration": "cómo está usted",
+    "english": "How are you?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "cómo está usted",
+      "como esta usted"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_005",
+    "greek": "Muy bien, gracias.",
+    "transliteration": "muy bien gracias",
+    "english": "Fine, thank you",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "muy bien gracias"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_006",
+    "greek": "¿Cómo te llamas?",
+    "transliteration": "cómo te llamas",
+    "english": "What is your name?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "cómo te llamas",
+      "como te llamas"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_007",
+    "greek": "¿Cómo se llama usted?",
+    "transliteration": "cómo se llama usted",
+    "english": "What is your name?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "cómo se llama usted",
+      "como se llama usted"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_008",
+    "greek": "¿Quién eres?",
+    "transliteration": "quién eres",
+    "english": "Who are you?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "quién eres",
+      "quien eres"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_009",
+    "greek": "¿Quién es usted?",
+    "transliteration": "quién es usted",
+    "english": "Who are you?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "quién es usted",
+      "quien es usted"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_010",
+    "greek": "Mucho gusto.",
+    "transliteration": "mucho gusto",
+    "english": "It's a pleasure to meet you",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "mucho gusto"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_011",
+    "greek": "¿Cuántos años tiene usted?",
+    "transliteration": "cuántos años tiene usted",
+    "english": "How old are you?",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "cuántos años tiene usted",
+      "cuantos anos tiene usted"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "greet_012",
+    "greek": "De nada",
+    "transliteration": "de nada",
+    "english": "You're welcome",
+    "category": "greetings",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "de nada"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_001",
+    "greek": "carro , coche , auto",
+    "transliteration": "carro coche auto",
+    "english": "car",
+    "category": "directions",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "carro coche auto"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_002",
+    "greek": "autobús , guagua",
+    "transliteration": "autobús guagua",
+    "english": "bus",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "autobús guagua",
+      "autobus guagua"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_003",
+    "greek": "furgoneta , combi",
+    "transliteration": "furgoneta combi",
+    "english": "van",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "furgoneta combi"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_004",
+    "greek": "avión , aeroplano",
+    "transliteration": "avión aeroplano",
+    "english": "aeroplane/airline",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "avión aeroplano",
+      "avion aeroplano"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_005",
+    "greek": "tren ligero",
+    "transliteration": "tren ligero",
+    "english": "light rail",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "tren ligero"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_006",
+    "greek": "trole , trolebús",
+    "transliteration": "trole trolebús",
+    "english": "trolley-bus",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "trole trolebús",
+      "trole trolebus"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_007",
+    "greek": "transbordador , \"barco\" or \"ferry\" is also used, especially in Latin America",
+    "transliteration": "transbordador barco or ferry is also used especially in latin america",
+    "english": "ferry",
+    "category": "directions",
+    "difficulty": 3,
+    "acceptedPronunciations": [
+      "transbordador barco or ferry is also used especially in latin america"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_008",
+    "greek": "bicicleta , bici",
+    "transliteration": "bicicleta bici",
+    "english": "bicycle",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "bicicleta bici"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_009",
+    "greek": "motocicleta , moto",
+    "transliteration": "motocicleta moto",
+    "english": "motorcycle",
+    "category": "directions",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "motocicleta moto"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "dir_010",
+    "greek": "a la estación de tren?",
+    "transliteration": "a la estación de tren",
+    "english": "to the train station?",
+    "category": "directions",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "a la estación de tren",
+      "a la estacion de tren"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_001",
+    "greek": "Quiero dejar el hotel.",
+    "transliteration": "quiero dejar el hotel",
+    "english": "I want to check out.",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "quiero dejar el hotel"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_002",
+    "greek": "¿Me puede cambiar cheques de viaje?",
+    "transliteration": "me puede cambiar cheques de viaje",
+    "english": "Can you change a traveler's check for me?",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "me puede cambiar cheques de viaje"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_003",
+    "greek": "¿Dónde me pueden cambiar cheques de viaje?",
+    "transliteration": "dónde me pueden cambiar cheques de viaje",
+    "english": "Where can I get a traveler's check changed?",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "dónde me pueden cambiar cheques de viaje",
+      "donde me pueden cambiar cheques de viaje"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_004",
+    "greek": "Una mesa para una persona",
+    "transliteration": "una mesa para una persona",
+    "english": "A table for one person/two people, please.",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "una mesa para una persona"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_005",
+    "greek": "Me gustaría reservar una mesa para esta noche",
+    "transliteration": "me gustaría reservar una mesa para esta noche",
+    "english": "I'd like to reserve a table for tonight/tomorrow.",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "me gustaría reservar una mesa para esta noche",
+      "me gustaria reservar una mesa para esta noche"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_006",
+    "greek": "¿Puedo ver el menú, por favor?",
+    "transliteration": "puedo ver el menú por favor",
+    "english": "Can I look at the menu, please?",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "puedo ver el menú por favor",
+      "puedo ver el menu por favor"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_007",
+    "greek": "¿Puedo entrar a la cocina?",
+    "transliteration": "puedo entrar a la cocina",
+    "english": "Can I look in the kitchen?",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "puedo entrar a la cocina"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_008",
+    "greek": "¿Hay alguna especialidad de la casa?",
+    "transliteration": "hay alguna especialidad de la casa",
+    "english": "Is there a house specialty?",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "hay alguna especialidad de la casa"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_009",
+    "greek": "¿Hay alguna especialidad regional",
+    "transliteration": "hay alguna especialidad regional",
+    "english": "Is there a local specialty?",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "hay alguna especialidad regional"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_010",
+    "greek": "Soy vegetariano",
+    "transliteration": "soy vegetariano",
+    "english": "I'm a vegetarian.",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "soy vegetariano"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_011",
+    "greek": "No como cerdo.",
+    "transliteration": "no como cerdo",
+    "english": "I don't eat pork.",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "no como cerdo"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_012",
+    "greek": "No como carne de vaca.",
+    "transliteration": "no como carne de vaca",
+    "english": "I don't eat beef.",
+    "category": "restaurant",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "no como carne de vaca"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_013",
+    "greek": "Sólo como comida kosher.",
+    "transliteration": "sólo como comida kosher",
+    "english": "I only eat kosher food.",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "sólo como comida kosher",
+      "solo como comida kosher"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_014",
+    "greek": "¿Puede poner poco aceite",
+    "transliteration": "puede poner poco aceite",
+    "english": "Can you make it \"lite\", please?",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "puede poner poco aceite"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "rest_015",
+    "greek": "comida precio fijo",
+    "transliteration": "comida precio fijo",
+    "english": "fixed-price meal",
+    "category": "restaurant",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "comida precio fijo"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_001",
+    "greek": "¿Tiene esto de mi talla?",
+    "transliteration": "tiene esto de mi talla",
+    "english": "Do you have this in my size?",
+    "category": "shopping",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "tiene esto de mi talla"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_002",
+    "greek": "¿Cuánto cuesta?",
+    "transliteration": "cuánto cuesta",
+    "english": "How much is this?",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "cuánto cuesta",
+      "cuanto cuesta"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_003",
+    "greek": "Es demasiado caro.",
+    "transliteration": "es demasiado caro",
+    "english": "That's too expensive.",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "es demasiado caro"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_004",
+    "greek": "Es muy caro para mí.",
+    "transliteration": "es muy caro para mí",
+    "english": "I can't afford it.",
+    "category": "shopping",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "es muy caro para mí",
+      "es muy caro para mi"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_005",
+    "greek": "No lo quiero.",
+    "transliteration": "no lo quiero",
+    "english": "I don't want it.",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "no lo quiero"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_006",
+    "greek": "Me está engañando.",
+    "transliteration": "me está engañando",
+    "english": "You're cheating me.",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "me está engañando",
+      "me esta enganando"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_007",
+    "greek": "No me interesa.",
+    "transliteration": "no me interesa",
+    "english": "I'm not interested.",
+    "category": "shopping",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "no me interesa"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "shop_008",
+    "greek": "De acuerdo, me lo llevaré.",
+    "transliteration": "de acuerdo me lo llevaré",
+    "english": "OK, I'll take it.",
+    "category": "shopping",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "de acuerdo me lo llevaré",
+      "de acuerdo me lo llevare"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "time_001",
+    "greek": "vez",
+    "transliteration": "vez",
+    "english": "time",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "vez"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "time_002",
+    "greek": "tiempo",
+    "transliteration": "tiempo",
+    "english": "time",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "tiempo"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "time_003",
+    "greek": "noche",
+    "transliteration": "noche",
+    "english": "night",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "noche"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "time_004",
+    "greek": "veces",
+    "transliteration": "veces",
+    "english": "time",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "veces"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "time_005",
+    "greek": "tarde",
+    "transliteration": "tarde",
+    "english": "evening",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "tarde"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "time_006",
+    "greek": "hora",
+    "transliteration": "hora",
+    "english": "hour",
+    "category": "time",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "hora"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "num_001",
+    "greek": "dos",
+    "transliteration": "dos",
+    "english": "two",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "dos"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "num_002",
+    "greek": "uno",
+    "transliteration": "uno",
+    "english": "one",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "uno"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "num_003",
+    "greek": "tres",
+    "transliteration": "tres",
+    "english": "three",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "tres"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "num_004",
+    "greek": "primera",
+    "transliteration": "primera",
+    "english": "first",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "primera"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "num_005",
+    "greek": "primero",
+    "transliteration": "primero",
+    "english": "first",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "primero"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "num_006",
+    "greek": "cinco",
+    "transliteration": "cinco",
+    "english": "five",
+    "category": "numbers",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "cinco"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_001",
+    "greek": "Hablo un poco español.",
+    "transliteration": "hablo un poco español",
+    "english": "I speak a little Spanish.",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "hablo un poco español",
+      "hablo un poco espanol"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_002",
+    "greek": "No hablo español",
+    "transliteration": "no hablo español",
+    "english": "I can't speak Spanish",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "no hablo español",
+      "no hablo espanol"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_003",
+    "greek": "¿Hablas inglés?",
+    "transliteration": "hablas inglés",
+    "english": "Do you speak English?",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "hablas inglés",
+      "hablas ingles"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_004",
+    "greek": "¿Habla usted inglés?",
+    "transliteration": "habla usted inglés",
+    "english": "Do you speak English?",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "habla usted inglés",
+      "habla usted ingles"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_005",
+    "greek": "¿Podría usted hablar más despacio por favor?",
+    "transliteration": "podría usted hablar más despacio por favor",
+    "english": "Could you speak more slowly please?",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "podría usted hablar más despacio por favor",
+      "podria usted hablar mas despacio por favor"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_006",
+    "greek": "Llamaré a la policía.",
+    "transliteration": "llamaré a la policía",
+    "english": "I'll call the police.",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "llamaré a la policía",
+      "llamare a la policia"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_007",
+    "greek": "Necesito llamar a la embajada",
+    "transliteration": "necesito llamar a la embajada",
+    "english": "I need to call the embassy.",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "necesito llamar a la embajada"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_008",
+    "greek": "¿Podríamos bailar aquí?",
+    "transliteration": "podríamos bailar aquí",
+    "english": "Could we dance here?",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "podríamos bailar aquí",
+      "podriamos bailar aqui"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_009",
+    "greek": "Quiero hablar con el consulado",
+    "transliteration": "quiero hablar con el consulado",
+    "english": "I want to talk to the American/Australian/British/Canadian consulate/embassy.",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "quiero hablar con el consulado"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_010",
+    "greek": "Quiero hablar con un abogado.",
+    "transliteration": "quiero hablar con un abogado",
+    "english": "I want to talk to a lawyer.",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "quiero hablar con un abogado"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_011",
+    "greek": "¡Llame a la policía!",
+    "transliteration": "llame a la policía",
+    "english": "Call the police!",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "llame a la policía",
+      "llame a la policia"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_012",
+    "greek": "Los llamaré cuando regrese mañana.",
+    "transliteration": "los llamaré cuando regrese mañana",
+    "english": "I'll call them tomorrow when I come back.",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "los llamaré cuando regrese mañana",
+      "los llamare cuando regrese manana"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_013",
+    "greek": "Mi mamá no habla muy bien inglés.",
+    "transliteration": "mi mamá no habla muy bien inglés",
+    "english": "My mom doesn't speak English very well.",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "mi mamá no habla muy bien inglés",
+      "mi mama no habla muy bien ingles"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_014",
+    "greek": "¡No hablo francés lo suficientemente bien!",
+    "transliteration": "no hablo francés lo suficientemente bien",
+    "english": "I don't speak French well enough!",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "no hablo francés lo suficientemente bien",
+      "no hablo frances lo suficientemente bien"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_015",
+    "greek": "Todos quieren conocerte. ¡Eres famoso!",
+    "transliteration": "todos quieren conocerte eres famoso",
+    "english": "Everyone wants to meet you. You're famous!",
+    "category": "social",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "todos quieren conocerte eres famoso"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "social_016",
+    "greek": "No hablo japonés.",
+    "transliteration": "no hablo japonés",
+    "english": "I don't speak Japanese.",
+    "category": "social",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "no hablo japonés",
+      "no hablo japones"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_001",
+    "greek": "Necesito ayuda.",
+    "transliteration": "necesito ayuda",
+    "english": "I need help.",
+    "category": "emergency",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "necesito ayuda"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_002",
+    "greek": "Estoy perdido",
+    "transliteration": "estoy perdido",
+    "english": "I'm lost.",
+    "category": "emergency",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "estoy perdido"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_003",
+    "greek": "Perdí mi bolsa",
+    "transliteration": "perdí mi bolsa",
+    "english": "I lost my purse/handbag.",
+    "category": "emergency",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "perdí mi bolsa",
+      "perdi mi bolsa"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_004",
+    "greek": "Perdí la cartera",
+    "transliteration": "perdí la cartera",
+    "english": "I lost my wallet.",
+    "category": "emergency",
+    "difficulty": 1,
+    "acceptedPronunciations": [
+      "perdí la cartera",
+      "perdi la cartera"
+    ],
+    "contextNote": null
+  },
+  {
+    "id": "emerg_005",
+    "greek": "No he hecho nada malo.",
+    "transliteration": "no he hecho nada malo",
+    "english": "I haven't done anything wrong.",
+    "category": "emergency",
+    "difficulty": 2,
+    "acceptedPronunciations": [
+      "no he hecho nada malo"
+    ],
+    "contextNote": null
+  }
+]
